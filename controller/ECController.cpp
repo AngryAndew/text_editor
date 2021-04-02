@@ -1,14 +1,17 @@
 #include "ECController.h"
-Controller::Controller(ECEditorView view, Document doc) : view(view), doc(doc){}
-
-void Controller::insert()
-{
-    doc.insert();
-}
+#include "ECCommands.h"
+Controller::Controller() : view(), doc(view)
+{}
 
 void Controller::new_line()
 {
-    doc.new_line();
+    New_LineCommand(doc,view.x,view.y).Execute();
+    move_down();
+    //todo: make move home
+    while (view.x != 0)
+    {
+        move_left();
+    }
 }
 
 void Controller::quit()
@@ -18,7 +21,7 @@ void Controller::quit()
 
 int Controller::get_key()
 {
-    view.get_key();
+    return view.get_key();
 }
 
 void Controller::move_left()
@@ -41,3 +44,20 @@ void Controller::move_down()
     view.move_down();
 }
 
+void Controller::type(int key)
+{
+    std::string str;
+    str += static_cast<char>(key);
+    InsertCommand(doc,view.x,view.y, str).Execute();
+    move_right();
+}
+
+void Controller::attach(ECObserver* ob)
+{
+    view.attach(ob);
+}
+
+void Controller::show()
+{
+    view.show();
+}

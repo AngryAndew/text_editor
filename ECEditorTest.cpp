@@ -1,37 +1,37 @@
 // Test code for editor
 #include "ECTextViewImp.h"
 #include <iostream>
+#include "ECObservers.h"
 
 using namespace  std;
 
-int myCounter = 0;
-
 int main(int argc, char *argv[])
 {
-    //
-    ECTextViewImp wndTest;
-    wndTest.AddRow("CSE 3150");
-    wndTest.SetColor(0, 0, 0, TEXT_COLOR_RED);
-    wndTest.SetColor(0, 1, 1, TEXT_COLOR_GREEN);
-    wndTest.SetColor(0, 2, 2, TEXT_COLOR_BLUE);
-    wndTest.SetColor(0, 4, 4, TEXT_COLOR_RED);
-    wndTest.SetColor(0, 5, 5, TEXT_COLOR_GREEN);
-    wndTest.SetColor(0, 6, 6, TEXT_COLOR_BLUE);
-    wndTest.SetColor(0, 7, 7, TEXT_COLOR_MAGENTA);
-    wndTest.AddRow("This is a very simple demo of the ECTextViewImp functionalities.");
-    wndTest.SetColor(1, 10, 13, TEXT_COLOR_GREEN);
-    wndTest.AddRow("Press ctrl-q to quit");
-    wndTest.SetColor(2, 0, 1, TEXT_COLOR_GREEN);
-    wndTest.SetColor(2, 0, 1, TEXT_COLOR_DEF);
 
-    // add a status bar
-    wndTest.AddStatusRow("Editor", "For demo only", true);
+    Controller editor =  Controller();
 
-    Quit_Ob q_ob(wndTest);
-    wndTest.Attach(&q_ob);
-    Cursor_Ob c_ob(wndTest);
-    wndTest.Attach(&c_ob);
-    wndTest.Show();
+    Quit_Ob q_ob(editor);
+    editor.attach(&q_ob);
+
+    New_Line_Ob nl_ob(editor);
+    editor.attach(&nl_ob);
+
+    Typing_Ob t_ob(editor);
+    editor.attach(&t_ob);
+
+    Move_Left_Ob ml_ob(editor);
+    editor.attach(&ml_ob);
+
+    Move_Right_Ob mr_ob(editor);
+    editor.attach(&mr_ob);
+
+    Move_Up_Ob mp_ob(editor);
+    editor.attach(&mp_ob);
+
+    Move_Down_Ob md_ob(editor);
+    editor.attach(&md_ob);
+
+    editor.show();
     
     return 0;
 }

@@ -7,20 +7,23 @@
 class ECEditorView
 {
 public:
-ECEditorView(ECTextViewImp& view);
-void refresh();
-void update();
-void quit();
-int get_key();
-void move_left();
-void move_right();
-void move_up();
-void move_down();
+    ECEditorView();
+    void refresh();
+    void update(const std::vector<std::string>&  lines);
+    void quit();
+    int get_key();
+    void move_left();
+    void move_right();
+    void move_up();
+    void move_down();
+    void attach(ECObserver* ob);
+    void show();
+    int x;
+    int y;
 private:
-ECTextViewImp& view;
-std::vector<std::string> lines;
-int x = view.GetCursorX();
-int y = view.GetCursorY();
+    ECTextViewImp view;
+    std::vector<std::string> lines;
+    
 };
 
 #endif

@@ -60,3 +60,13 @@ void Move_Down_Ob::Update()
     }
 }
 
+
+Typing_Ob::Typing_Ob(Controller& control) : control(control){}
+void Typing_Ob::Update()
+{
+    int key = control.get_key();
+    if (key >= 32 && key <= 126)
+    {
+       control.type(key);
+    }
+}

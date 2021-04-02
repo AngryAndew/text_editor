@@ -7,21 +7,24 @@
 class InsertCommand : public Command	
 {	
 public:	
-InsertCommand(Document& doc);
-virtual void Execute(int x, int y, std::string str);
-
+    InsertCommand(Document& doc, int x, int y, std::string str);
+    virtual void Execute();
 private:
-Document& doc;
+    Document& doc;
+    int x;
+    int y;
+    std::string str;
 };
 
 class New_LineCommand : public Command	
 {	
 public:	
-New_LineCommand(Document& doc);
-virtual void Execute(int x, int y);
-
+    New_LineCommand(Document& doc, int x, int y);
+    virtual void Execute();
 private:
-Document& doc;
+    Document& doc;
+    int x;
+    int y;
 };
 
 

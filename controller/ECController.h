@@ -6,8 +6,7 @@
 class Controller 
 {
 public:
-    Controller(ECEditorView view, Document doc);
-    void insert();
+    Controller();
     void new_line();
     void quit();
     void move_left();
@@ -15,6 +14,9 @@ public:
     void move_up();
     void move_down();
     int get_key();
+    void type(int key);
+    void attach(ECObserver* ob);
+    void show();
 private:
     ECEditorView view;
     Document doc;
