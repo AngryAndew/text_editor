@@ -31,6 +31,9 @@ int main(int argc, char *argv[])
     Move_Down_Ob md_ob(editor);
     editor.attach(&md_ob);
 
+    Delete_Ob del_ob(editor);
+    editor.attach(&del_ob);
+
     editor.show();
     
     return 0;

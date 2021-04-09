@@ -12,6 +12,9 @@ public:
     Document(ECEditorView& view);
     void insert(int x, int y, const std::string& str);
     void new_line(int x, int y);
+    void del(int x, int y);
+    void join_line(int x, int y);
+    int line_size(int y);
 private:
     ECEditorView& view;
     std::vector<std::string> lines;

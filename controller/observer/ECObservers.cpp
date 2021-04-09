@@ -70,3 +70,13 @@ void Typing_Ob::Update()
        control.type(key);
     }
 }
+
+Delete_Ob::Delete_Ob(Controller& control) : control(control){}
+void Delete_Ob::Update()
+{
+    int key = control.get_key();
+    if (key == KEY_ACTION::BACKSPACE)
+    {
+       control.del();
+    }
+}

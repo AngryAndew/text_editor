@@ -4,6 +4,12 @@
 
 #include "ECTextViewImp.h"
 
+class ECPage
+{
+public:
+    std::vector<std::string> lines;
+};
+
 class ECEditorView
 {
 public:
@@ -16,13 +22,19 @@ public:
     void move_right();
     void move_up();
     void move_down();
+    void move_home();
+    void move_end();
     void attach(ECObserver* ob);
     void show();
+    void update_page(ECPage page);
+    int page_size();
     int x;
     int y;
+    int page_at(int y);
 private:
     ECTextViewImp view;
-    std::vector<std::string> lines;
+    std::vector<ECPage> pages;
+    int active_page;
     
 };
 

@@ -13,8 +13,11 @@ public:
     void move_right();
     void move_up();
     void move_down();
+    void move_home();
+    void move_end();
     int get_key();
     void type(int key);
+    void del();
     void attach(ECObserver* ob);
     void show();
 private:

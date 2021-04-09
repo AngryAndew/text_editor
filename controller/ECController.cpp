@@ -7,11 +7,7 @@ void Controller::new_line()
 {
     New_LineCommand(doc,view.x,view.y).Execute();
     move_down();
-    //todo: make move home
-    while (view.x != 0)
-    {
-        move_left();
-    }
+    move_home();
 }
 
 void Controller::quit()
@@ -44,6 +40,16 @@ void Controller::move_down()
     view.move_down();
 }
 
+void Controller::move_home()
+{
+    view.move_home();
+}
+
+void Controller::move_end()
+{
+    view.move_end();
+}
+
 void Controller::type(int key)
 {
     std::string str;
@@ -60,4 +66,21 @@ void Controller::attach(ECObserver* ob)
 void Controller::show()
 {
     view.show();
+}
+
+void Controller::del()
+{
+    if(view.x == 0)
+    {
+        int x = view.x;
+        int y = view.y;
+        move_up();
+        move_end();
+        Join_LineCommand(doc,x,y).Execute();
+    } 
+    else
+    {
+        move_left();
+        DeleteCommand(doc,view.x,view.y).Execute();
+    }
 }

@@ -65,4 +65,13 @@ public:
 private:
     Controller& control;
 };
+
+class Delete_Ob : public ECObserver
+{
+public:
+    Delete_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
 #endif

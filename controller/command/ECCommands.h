@@ -27,5 +27,27 @@ private:
     int y;
 };
 
+class DeleteCommand : public Command	
+{	
+public:	
+    DeleteCommand(Document& doc, int x, int y);
+    virtual void Execute();
+private:
+    Document& doc;
+    int x;
+    int y;
+};
+
+class Join_LineCommand : public Command	
+{	
+public:	
+    Join_LineCommand(Document& doc, int x, int y);
+    virtual void Execute();
+private:
+    Document& doc;
+    int x;
+    int y;
+};
+
 
 #endif
