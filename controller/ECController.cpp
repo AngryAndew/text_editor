@@ -88,3 +88,13 @@ void Controller::del()
         DeleteCommand(doc,view.x,view.y).Execute();
     }
 }
+
+void Controller::undo()
+{
+    UndoCommand(doc,view.x,view.y).Execute();
+}
+
+void Controller::redo()
+{
+    RedoCommand(doc,view.x,view.y).Execute();
+}

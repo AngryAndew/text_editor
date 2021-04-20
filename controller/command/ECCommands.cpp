@@ -34,3 +34,15 @@ void LoadCommand::Execute()
 {
     doc.load_file(filename);
 }
+
+UndoCommand::UndoCommand(Document& doc, int x, int y): doc(doc), x(x), y(y){}
+void UndoCommand::Execute()
+{
+    doc.undo(x,y);
+}
+
+RedoCommand::RedoCommand(Document& doc, int x, int y): doc(doc), x(x), y(y){}
+void RedoCommand::Execute()
+{
+    doc.redo(x,y);;
+}

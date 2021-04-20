@@ -20,6 +20,8 @@ public:
     void del();
     void attach(ECObserver* ob);
     void show();
+    void undo();
+    void redo();
 private:
     std::string filename;
     ECEditorView view;
