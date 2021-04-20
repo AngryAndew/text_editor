@@ -1,6 +1,8 @@
 #include "ECDocument.h"
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 Document::Document(ECEditorView& view) : view(view), lines{""}
 {}
@@ -43,4 +45,32 @@ void Document::update()
 int Document::line_size(int y)
 {
     return lines[y].size();
+}
+
+void Document::load_file(std::string filename)
+{
+    std::fstream newfile(filename, std::ios::in);
+    if (newfile.is_open())
+    {   
+        lines.clear();
+        std::string line;
+        while(getline(newfile, line))
+        { 
+            lines.push_back(line);
+        } 
+        update();
+        newfile.close(); 
+    }
+}
+void Document::save_file(std::string filename)
+{
+    std::fstream newfile(filename, std::ios::out);
+     if(newfile.is_open())     
+   {
+       for(auto &line : lines)
+       {
+           newfile << line << "\n"; 
+       }
+      newfile.close(); 
+   }
 }

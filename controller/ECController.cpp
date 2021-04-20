@@ -1,7 +1,10 @@
 #include "ECController.h"
 #include "ECCommands.h"
-Controller::Controller() : view(), doc(view)
-{}
+Controller::Controller(std::string filename) : view(), doc(view), filename(filename)
+{
+    view.refresh();
+    LoadCommand(doc, filename).Execute();
+}
 
 void Controller::new_line()
 {
@@ -12,6 +15,7 @@ void Controller::new_line()
 
 void Controller::quit()
 {
+    SaveCommand(doc, filename).Execute();
     view.quit();
 }
 

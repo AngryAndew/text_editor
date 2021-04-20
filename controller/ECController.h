@@ -6,7 +6,7 @@
 class Controller 
 {
 public:
-    Controller();
+    Controller(std::string filename);
     void new_line();
     void quit();
     void move_left();
@@ -21,6 +21,7 @@ public:
     void attach(ECObserver* ob);
     void show();
 private:
+    std::string filename;
     ECEditorView view;
     Document doc;
 };

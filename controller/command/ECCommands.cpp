@@ -22,3 +22,15 @@ void Join_LineCommand::Execute()
 {
     doc.join_line(x, y);
 }
+
+SaveCommand::SaveCommand(Document& doc, std::string filename): doc(doc), filename(filename){}
+void SaveCommand::Execute()
+{
+    doc.save_file(filename);
+}
+
+LoadCommand::LoadCommand(Document& doc, std::string filename): doc(doc), filename(filename){}
+void LoadCommand::Execute()
+{
+    doc.load_file(filename);
+}

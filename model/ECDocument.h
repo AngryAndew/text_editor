@@ -15,10 +15,14 @@ public:
     void del(int x, int y);
     void join_line(int x, int y);
     int line_size(int y);
+    void save_file(std::string filename);
+    void load_file(std::string filename);
 private:
     ECEditorView& view;
     std::vector<std::string> lines;
     void update();
+    
+    
 };
 
 #endif

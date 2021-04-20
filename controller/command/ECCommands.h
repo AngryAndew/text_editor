@@ -49,5 +49,24 @@ private:
     int y;
 };
 
+class SaveCommand : public Command	
+{	
+public:	
+    SaveCommand(Document& doc, std::string filename);
+    virtual void Execute();
+private:
+    Document& doc;
+    std::string filename; 
+};
+
+class LoadCommand : public Command	
+{	
+public:	
+    LoadCommand(Document& doc, std::string filename);
+    virtual void Execute();
+private:
+    Document& doc;
+    std::string filename; 
+};
 
 #endif
