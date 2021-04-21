@@ -27,6 +27,8 @@ public:
     void attach(ECObserver* ob);
     void show();
     void update_page(ECPage page);
+    void set_x(int x);
+    void set_y(int y);
     int page_size();
     int x;
     int y;
