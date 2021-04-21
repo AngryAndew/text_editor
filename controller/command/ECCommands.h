@@ -69,25 +69,4 @@ private:
     std::string filename; 
 };
 
-class UndoCommand : public Command	
-{	
-public:	
-    UndoCommand(Document& doc, int x, int y);
-    virtual void Execute();
-private:
-    Document& doc;
-    int x;
-    int y;
-};
-
-class RedoCommand : public Command	
-{	
-public:	
-    RedoCommand(Document& doc, int x, int y);
-    virtual void Execute();
-private:
-    Document& doc;
-    int x;
-    int y;
-};
 #endif

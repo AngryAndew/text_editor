@@ -91,10 +91,11 @@ void Controller::del()
 
 void Controller::undo()
 {
-    UndoCommand(doc,view.x,view.y).Execute();
+    
 }
 
 void Controller::redo()
 {
-    RedoCommand(doc,view.x,view.y).Execute();
+    
 }
+    

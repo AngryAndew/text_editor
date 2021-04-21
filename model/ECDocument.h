@@ -17,8 +17,6 @@ public:
     int line_size(int y);
     void save_file(std::string filename);
     void load_file(std::string filename);
-    void undo(int x, int y);
-    void redo(int x, int y);
 private:
     ECEditorView& view;
     std::vector<std::string> lines;

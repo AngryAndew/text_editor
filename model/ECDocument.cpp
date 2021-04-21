@@ -74,13 +74,3 @@ void Document::save_file(std::string filename)
       newfile.close(); 
    }
 }
-
-void Document::undo(int x, int y)
-{
-    //TODO
-}
-
-void Document::redo(int x, int y)
-{
-    //TODO
-}

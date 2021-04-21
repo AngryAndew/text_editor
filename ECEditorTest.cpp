@@ -34,6 +34,12 @@ int main(int argc, char *argv[])
     Delete_Ob del_ob(editor);
     editor.attach(&del_ob);
 
+    Undo_Ob undo_ob(editor);
+    editor.attach(&undo_ob);
+
+    Redo_Ob redo_ob(editor);
+    editor.attach(&redo_ob);
+    
     editor.show();
     
     return 0;
