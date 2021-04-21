@@ -21,20 +21,25 @@ void Document::new_line(int x, int y)
     update();
 }
 
-void Document::del(int x, int y)
+char Document::del(int x, int y)
 {
+    char c = lines[y][x];
     lines[y].erase(lines[y].begin() + (x));
     update();
+    return c;
 }
 
-void Document::join_line(int x, int y)
+int Document::join_line(int x, int y)
 {
+    int px = 0;
     if(y > 0)
     {
+        px = lines[y - 1].size();
         lines[y - 1] += lines[y];
         lines.erase(lines.begin() + y);
         update();
     }
+    return px;
 }
 
 void Document::update()
@@ -73,4 +78,9 @@ void Document::save_file(std::string filename)
        }
       newfile.close(); 
    }
+}
+
+int Document::total_lines()
+{
+    return lines.size();
 }

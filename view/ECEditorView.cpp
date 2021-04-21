@@ -165,3 +165,11 @@ int ECEditorView::page_at(int y)
 {
     return y / page_size();
 }
+void ECEditorView::set_x(int x)
+{
+    view.SetCursorX(this->x = x);
+}
+void ECEditorView::set_y(int y)
+{
+    view.SetCursorY(this->y = y);
+}

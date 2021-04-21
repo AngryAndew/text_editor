@@ -80,3 +80,23 @@ void Delete_Ob::Update()
        control.del();
     }
 }
+
+Undo_Ob::Undo_Ob(Controller& control) : control(control){}
+void Undo_Ob::Update()
+{
+    int key = control.get_key();
+    if (key == KEY_ACTION::CTRL_Z)
+    {
+       control.undo();
+    }
+}
+
+Redo_Ob::Redo_Ob(Controller& control) : control(control){}
+void Redo_Ob::Update()
+{
+    int key = control.get_key();
+    if (key == KEY_ACTION::CTRL_Y)
+    {
+       control.redo();
+    }
+}

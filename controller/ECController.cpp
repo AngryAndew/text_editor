@@ -3,12 +3,12 @@
 Controller::Controller(std::string filename) : view(), doc(view), filename(filename)
 {
     view.refresh();
-    LoadCommand(doc, filename).Execute();
+    LoadCommand(doc,filename).Execute();
 }
 
 void Controller::new_line()
 {
-    New_LineCommand(doc,view.x,view.y).Execute();
+    history.execute(new New_LineCommand(doc,view.x,view.y));
     move_down();
     move_home();
 }
@@ -58,7 +58,7 @@ void Controller::type(int key)
 {
     std::string str;
     str += static_cast<char>(key);
-    InsertCommand(doc,view.x,view.y, str).Execute();
+    history.execute(new InsertCommand(doc,view.x,view.y, str));
     move_right();
 }
 
@@ -80,11 +80,49 @@ void Controller::del()
         int y = view.y;
         move_up();
         move_end();
-        Join_LineCommand(doc,x,y).Execute();
+        history.execute(new Join_LineCommand(doc,x,y));
     } 
     else
     {
         move_left();
-        DeleteCommand(doc,view.x,view.y).Execute();
+        history.execute(new DeleteCommand(doc,view.x,view.y));
     }
 }
+
+void Controller::undo()
+{
+    history.undo();
+    if(!vaild_cursor())
+    {
+        move_valid_cursor();
+    }
+}
+
+void Controller::redo()
+{
+    history.redo();
+    if(!vaild_cursor())
+    {
+        move_valid_cursor();
+    }
+}
+
+bool Controller::vaild_cursor()
+{
+   return view.y >= 0 && view.y < doc.total_lines() && view.x >= 0 && view.x <= doc.line_size(view.y);   
+}
+
+void Controller::move_valid_cursor()
+{
+    if (view.y >= doc.total_lines())
+    {
+        view.set_y(doc.total_lines() - 1);
+    }
+    if (view.x > doc.line_size(view.y))
+    {
+        view.set_x(doc.line_size(view.y));
+    }
+    
+    
+}
+    

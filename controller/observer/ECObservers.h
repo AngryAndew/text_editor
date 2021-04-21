@@ -74,4 +74,22 @@ public:
 private:
     Controller& control;
 };
+
+class Undo_Ob : public ECObserver
+{
+public:
+    Undo_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
+
+class Redo_Ob : public ECObserver
+{
+public:
+    Redo_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
 #endif

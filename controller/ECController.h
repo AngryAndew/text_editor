@@ -20,8 +20,13 @@ public:
     void del();
     void attach(ECObserver* ob);
     void show();
+    void undo();
+    void redo();
+    bool vaild_cursor();
+    void move_valid_cursor();
 private:
     std::string filename;
+    CommandHistory history;
     ECEditorView view;
     Document doc;
 };
