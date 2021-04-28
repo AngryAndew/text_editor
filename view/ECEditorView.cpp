@@ -173,3 +173,22 @@ void ECEditorView::set_y(int y)
 {
     view.SetCursorY(this->y = y);
 }
+void ECEditorView::show_status_row(std::string message)
+{
+    view.AddStatusRow(message,"",true);
+}
+
+void ECEditorView::kill_status_row()
+{
+    view.ClearStatusRows();
+}
+
+void ECEditorView::change_color(int y, int start, int end)
+{
+    view.SetColor(y, start, end, TEXT_COLOR::TEXT_COLOR_RED);
+}
+
+void ECEditorView::clear_color()
+{
+    view.ClearColor();
+}

@@ -92,4 +92,32 @@ public:
 private:
     Controller& control;
 };
+
+class Search_Ob : public ECObserver
+{
+public:
+    Search_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
+
+class Quit_Search_Ob : public ECObserver
+{
+public:
+    Quit_Search_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
+
+class Replace_Ob : public ECObserver
+{
+public:
+    Replace_Ob(Controller& control);
+    void Update();
+private:
+    Controller& control;
+};
+
 #endif

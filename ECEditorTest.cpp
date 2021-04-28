@@ -8,7 +8,7 @@ using namespace  std;
 int main(int argc, char *argv[])
 {
 
-    Controller editor =  Controller(argv[1]) ;
+    Controller editor =  Controller(argv[1], 0) ;
 
     Quit_Ob q_ob(editor);
     editor.attach(&q_ob);

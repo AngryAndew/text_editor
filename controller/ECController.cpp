@@ -1,6 +1,6 @@
 #include "ECController.h"
 #include "ECCommands.h"
-Controller::Controller(std::string filename) : view(), doc(view), filename(filename)
+Controller::Controller(std::string filename, int mode) : view(), doc(view), filename(filename), mode(mode)
 {
     view.refresh();
     LoadCommand(doc,filename).Execute();
@@ -122,7 +122,20 @@ void Controller::move_valid_cursor()
     {
         view.set_x(doc.line_size(view.y));
     }
-    
-    
+}
+
+void Controller::search()
+{
+    mode = 1;   
+}
+
+void Controller::edit()
+{
+    mode = 0;   
+}
+
+void Controller::replace()
+{
+    mode = 2;   
 }
     
