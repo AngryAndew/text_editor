@@ -77,5 +77,18 @@ private:
     std::string filename; 
 };
 
+class Replace_LineCommand : public Command	
+{	
+public:	
+    Replace_LineCommand(Document& doc, int x, int y, std::string status, std::string text);
+    virtual void Execute();
+    virtual void UnExecute();
+private:
+    Document& doc;
+    int x;
+    int y;
+    std::string status;
+    std::string text;
+};
 
 #endif

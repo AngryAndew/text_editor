@@ -33,6 +33,10 @@ public:
     int x;
     int y;
     int page_at(int y);
+    void show_status_row(std::string message);
+    void kill_status_row();
+    void change_color(int y, int start, int end);
+    void clear_color();
 private:
     ECTextViewImp view;
     std::vector<ECPage> pages;

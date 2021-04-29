@@ -8,7 +8,7 @@ using namespace  std;
 int main(int argc, char *argv[])
 {
 
-    Controller editor =  Controller(argv[1]) ;
+    Controller editor =  Controller(argv[1], 0) ;
 
     Quit_Ob q_ob(editor);
     editor.attach(&q_ob);
@@ -39,7 +39,16 @@ int main(int argc, char *argv[])
 
     Redo_Ob redo_ob(editor);
     editor.attach(&redo_ob);
+
+    Search_Ob search_ob(editor);
+    editor.attach(&search_ob);
+
+    Quit_Mode_Ob qm_ob(editor);
+    editor.attach(&qm_ob);
     
+    Replace_Ob r_ob(editor);
+    editor.attach(&r_ob);
+
     editor.show();
     
     return 0;
