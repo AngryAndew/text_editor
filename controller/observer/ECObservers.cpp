@@ -121,7 +121,7 @@ Search_Ob::Search_Ob(Controller& control) : control(control){}
 void Search_Ob::Update()
 {
     int key = control.get_key();
-    if (key == KEY_ACTION::CTRL_G && control.mode == 0)
+    if (key == KEY_ACTION::CTRL_F && control.mode == 0)
     {
        control.search();
     }
