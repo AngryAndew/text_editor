@@ -84,3 +84,26 @@ int Document::total_lines()
 {
     return lines.size();
 }
+
+std::vector<int> Document::find_string(std::string str)
+{
+    std::vector<int> five;
+   for (int i = 0; i < lines.size(); i++)
+   {
+       int j = 0;
+       while (j < lines[i].size())
+       {
+        j = lines[i].find(str, j);
+        if (j >= 0)
+        {
+            five.push_back(j);
+            j += str.size();
+        }
+        else
+        {
+            break;
+        }
+       }
+   }
+   return five;
+}

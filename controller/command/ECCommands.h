@@ -77,5 +77,4 @@ private:
     std::string filename; 
 };
 
-
 #endif

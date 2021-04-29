@@ -175,7 +175,9 @@ void ECEditorView::set_y(int y)
 }
 void ECEditorView::show_status_row(std::string message)
 {
+    view.ClearStatusRows();
     view.AddStatusRow(message,"",true);
+    view.Refresh();
 }
 
 void ECEditorView::kill_status_row()

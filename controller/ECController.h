@@ -27,12 +27,14 @@ public:
     void search();
     void edit();
     void replace();
+    void highlight();
+    void replace_text();
     int mode;
 private:
+    std::string status;
     std::string filename;
     CommandHistory history;
     ECEditorView view;
     Document doc;
-    
 };
 #endif

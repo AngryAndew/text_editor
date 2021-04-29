@@ -18,12 +18,11 @@ public:
     void save_file(std::string filename);
     void load_file(std::string filename);
     int total_lines();
+    std::vector<int> find_string(std::string str);
 private:
     ECEditorView& view;
     std::vector<std::string> lines;
     void update();
-    
-    
 };
 
 #endif

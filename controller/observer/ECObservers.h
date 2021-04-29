@@ -102,10 +102,10 @@ private:
     Controller& control;
 };
 
-class Quit_Search_Ob : public ECObserver
+class Quit_Mode_Ob : public ECObserver
 {
 public:
-    Quit_Search_Ob(Controller& control);
+    Quit_Mode_Ob(Controller& control);
     void Update();
 private:
     Controller& control;
@@ -119,5 +119,4 @@ public:
 private:
     Controller& control;
 };
-
 #endif

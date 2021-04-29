@@ -56,10 +56,21 @@ void Controller::move_end()
 
 void Controller::type(int key)
 {
-    std::string str;
-    str += static_cast<char>(key);
-    history.execute(new InsertCommand(doc,view.x,view.y, str));
-    move_right();
+    if(mode == 0)
+    {
+        std::string str;
+        str += static_cast<char>(key);
+        history.execute(new InsertCommand(doc,view.x,view.y, str));
+        move_right();
+    }
+    else
+    {
+        if(key != '/')
+        {
+            status += static_cast<char>(key);
+            view.show_status_row(status);
+        }
+    }
 }
 
 void Controller::attach(ECObserver* ob)
@@ -74,18 +85,29 @@ void Controller::show()
 
 void Controller::del()
 {
-    if(view.x == 0)
+    if (mode == 0)
     {
-        int x = view.x;
-        int y = view.y;
-        move_up();
-        move_end();
-        history.execute(new Join_LineCommand(doc,x,y));
-    } 
-    else
+        if(view.x == 0)
+        {
+            int x = view.x;
+            int y = view.y;
+            move_up();
+            move_end();
+            history.execute(new Join_LineCommand(doc,x,y));
+        } 
+        else
+        {
+            move_left();
+            history.execute(new DeleteCommand(doc,view.x,view.y));
+        }
+    }
+    else if (mode > 0)
     {
-        move_left();
-        history.execute(new DeleteCommand(doc,view.x,view.y));
+        if (status.size() > 0)
+        {
+            status.pop_back();
+            view.show_status_row(status);
+        }
     }
 }
 
@@ -126,16 +148,46 @@ void Controller::move_valid_cursor()
 
 void Controller::search()
 {
-    mode = 1;   
+    view.move_home(); 
+    mode = 1; 
+    view.show_status_row("");
 }
 
 void Controller::edit()
 {
-    mode = 0;   
+    mode = 0;
+    view.kill_status_row();
+    view.clear_color();
+    view.move_home();  
 }
 
 void Controller::replace()
 {
-    mode = 2;   
+    mode = 2;    
 }
+
+//TODO
+void Controller::highlight()
+{
+    if (status.size() == 0)
+    {
+        view.clear_color();
+    }
+    else
+    {
+        view.clear_color();
+        std::vector<int> five;
+        five = doc.find_string(status);
+        for (int i = 0; i < five.size(); i++)
+        {
+            view.change_color(view.y + 1, five[i],  five[i] + status.size() - 1); 
+        }
+    }
+}
+
+void Controller::replace_text()
+{
+    view.change_color(view.y, 0, view.x);
+}
+
     

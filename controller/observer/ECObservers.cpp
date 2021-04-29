@@ -22,6 +22,10 @@ void New_Line_Ob::Update()
     {
        control.highlight();
     }
+    else if (control.get_key() == KEY_ACTION::ENTER && control.mode == 2)
+    {
+       control.replace_text();
+    }
 }
 //put into handler if time 
 Move_Left_Ob::Move_Left_Ob(Controller& control) : control(control){}
@@ -73,9 +77,9 @@ void Typing_Ob::Update()
     {
        control.type(key);
     }
-    else if (key >= 32 && key <= 126 && control.mode == 1)
+    else if (key >= 32 && key <= 126 && control.mode > 0)
     {
-       control.type_status(key);
+       control.type(key);
     }
 }
 
@@ -87,9 +91,9 @@ void Delete_Ob::Update()
     {
        control.del();
     }
-    else if (key == KEY_ACTION::BACKSPACE && control.mode == 1)
+    else if (key == KEY_ACTION::BACKSPACE && control.mode > 0)
     {
-       control.del_status();
+       control.del();
     }
 }
 
@@ -117,19 +121,23 @@ Search_Ob::Search_Ob(Controller& control) : control(control){}
 void Search_Ob::Update()
 {
     int key = control.get_key();
-    if (key == KEY_ACTION::CTRL_F && control.mode == 0)
+    if (key == KEY_ACTION::CTRL_G && control.mode == 0)
     {
        control.search();
     }
 }
 
-Quit_Search_Ob::Quit_Search_Ob(Controller& control) : control(control){}
-void Quit_Search_Ob::Update()
+Quit_Mode_Ob::Quit_Mode_Ob(Controller& control) : control(control){}
+void Quit_Mode_Ob::Update()
 {
     int key = control.get_key();
     if (key == KEY_ACTION::ESC && control.mode == 1)
     {
        control.edit();
+    }
+    else if (key == KEY_ACTION::ESC && control.mode == 2)
+    {
+       control.search();
     }
 }
 
