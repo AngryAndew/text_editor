@@ -107,3 +107,14 @@ std::vector<int> Document::find_string(std::string str)
    }
    return five;
 }
+
+void Document::replace(int x, int y, std::string status, std::string text)
+{
+    std::vector<int> five;
+    five = find_string(status);
+    for (int i = five.size(); i --> 0;)
+    {
+        lines[y].replace(five[i], status.size() , text);
+    }
+    update();
+}

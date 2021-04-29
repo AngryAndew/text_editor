@@ -24,7 +24,7 @@ void New_Line_Ob::Update()
     }
     else if (control.get_key() == KEY_ACTION::ENTER && control.mode == 2)
     {
-       control.replace_text();
+       control.replace_text(control.text);
     }
 }
 //put into handler if time 

@@ -28,8 +28,9 @@ public:
     void edit();
     void replace();
     void highlight();
-    void replace_text();
+    void replace_text(std::string text);
     int mode;
+    std::string text;
 private:
     std::string status;
     std::string filename;

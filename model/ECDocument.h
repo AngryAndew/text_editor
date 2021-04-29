@@ -19,6 +19,7 @@ public:
     void load_file(std::string filename);
     int total_lines();
     std::vector<int> find_string(std::string str);
+    void replace(int x, int y, std::string status, std::string text);
 private:
     ECEditorView& view;
     std::vector<std::string> lines;

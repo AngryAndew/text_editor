@@ -85,6 +85,8 @@ void Controller::show()
 
 void Controller::del()
 {
+
+
     if (mode == 0)
     {
         if(view.x == 0)
@@ -163,7 +165,7 @@ void Controller::edit()
 
 void Controller::replace()
 {
-    mode = 2;    
+    mode = 2;
 }
 
 //TODO
@@ -182,12 +184,16 @@ void Controller::highlight()
         {
             view.change_color(view.y + 1, five[i],  five[i] + status.size() - 1); 
         }
+        text = status;
     }
 }
 
-void Controller::replace_text()
+void Controller::replace_text(std::string text)
 {
-    view.change_color(view.y, 0, view.x);
+    history.execute(new Replace_LineCommand(doc,view.x, view.y, text, status));
+    view.clear_color();
+    view.refresh();
+    search();
 }
 
     

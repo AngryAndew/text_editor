@@ -60,3 +60,11 @@ void LoadCommand::Execute()
 
 void LoadCommand::UnExecute()
 {}
+
+Replace_LineCommand::Replace_LineCommand(Document& doc, int x, int y, std::string status, std::string text): doc(doc), x(x), y(y), status(status), text(text){}
+void Replace_LineCommand::Execute()
+{
+    doc.replace(x, y, status, text);
+}
+void Replace_LineCommand::UnExecute()
+{}
