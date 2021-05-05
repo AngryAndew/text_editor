@@ -67,4 +67,6 @@ void Replace_LineCommand::Execute()
     doc.replace(x, y, status, text);
 }
 void Replace_LineCommand::UnExecute()
-{}
+{
+    doc.replace(x, y, text, status);
+}

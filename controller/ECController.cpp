@@ -172,7 +172,6 @@ void Controller::replace()
     mode = 2;
 }
 
-//TODO
 void Controller::highlight()
 {
     if (status.size() == 0)
