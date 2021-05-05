@@ -91,11 +91,15 @@ void Controller::del()
     {
         if(view.x == 0)
         {
-            int x = view.x;
-            int y = view.y;
-            move_up();
-            move_end();
-            history.execute(new Join_LineCommand(doc,x,y));
+            if(view.y != 0)
+            {
+                int x = view.x;
+                int y = view.y;
+                move_up();
+                move_end();
+                history.execute(new Join_LineCommand(doc,x,y));
+            }
+            
         } 
         else
         {
@@ -178,11 +182,11 @@ void Controller::highlight()
     else
     {
         view.clear_color();
-        std::vector<int> five;
-        five = doc.find_string(status);
-        for (int i = 0; i < five.size(); i++)
+        std::vector<std::vector<int>> fives;
+        fives = doc.find_string(status);
+        for (int i = 0; i < fives[0].size(); i++)
         {
-            view.change_color(view.y + 1, five[i],  five[i] + status.size() - 1); 
+            view.change_color(fives[1][i] + 1, fives[0][i],  fives[0][i] + status.size() - 1); 
         }
         text = status;
     }
