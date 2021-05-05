@@ -85,9 +85,11 @@ int Document::total_lines()
     return lines.size();
 }
 
-std::vector<int> Document::find_string(std::string str)
+std::vector<std::vector<int>> Document::find_string(std::string str)
 {
+    std::vector<std::vector<int>> fives;
     std::vector<int> five;
+    std::vector<int> ys;
    for (int i = 0; i < lines.size(); i++)
    {
        int j = 0;
@@ -97,6 +99,7 @@ std::vector<int> Document::find_string(std::string str)
         if (j >= 0)
         {
             five.push_back(j);
+            ys.push_back(i);
             j += str.size();
         }
         else
@@ -105,16 +108,18 @@ std::vector<int> Document::find_string(std::string str)
         }
        }
    }
-   return five;
+   fives.push_back(five);
+   fives.push_back(ys);
+   return fives;
 }
 
 void Document::replace(int x, int y, std::string status, std::string text)
 {
-    std::vector<int> five;
-    five = find_string(status);
-    for (int i = five.size(); i --> 0;)
+    std::vector<std::vector<int>> fives;
+    fives = find_string(status);
+    for (int i = fives[0].size(); i --> 0;)
     {
-        lines[y].replace(five[i], status.size() , text);
+        lines[fives[1][i]].replace(fives[0][i], status.size() , text);
     }
     update();
 }

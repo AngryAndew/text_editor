@@ -13,6 +13,7 @@ void ECEditorView::refresh()
 
 void ECEditorView::update(const std::vector<std::string>&  lines)
 {
+    view.ClearStatusRows();
     pages.clear();
     int i = 0;
     while (lines.size() - i > page_size())
